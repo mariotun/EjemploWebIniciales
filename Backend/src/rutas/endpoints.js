@@ -28,8 +28,9 @@ ruta.post('/iniciarsesion',async (req,res) =>{
       }else {
           res.status(200).json({
               Status:"ok",
+              msg:"true",
               Message:"Se inicio sesion correctamente.",
-              resultados
+              DataUser:resultados
 
           });
       }

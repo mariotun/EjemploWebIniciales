@@ -2,15 +2,18 @@
 const express = require('express');// la funcionalidad se guarda en la variable express
 const aplicacion= express();// el objeto que retorna la funcion express() se va a guardar dentro de la constante aplicacion
 
+const cors = require('cors');
+
 
 // configuraciones
 aplicacion.set('puerto', process.env.PORT || 3000);//inicializamos la variable aplicacion utilizando un metodo o funcion al cual va a escuchar o mandar un puerto.
 
 
 // Middlewares(funciones que se ejecutan antes de que se procese otra cosa)
+aplicacion.use(cors());
 aplicacion.use(express.json());/* ya que va a ser una apirest , con esto el servidor y las aplicacione cliente
                                 van a enviar datos el formato json.*/
-
+aplicacion.use(express.urlencoded({ extended: false }));
 
 //Routes(url) para procesar,recibir o guardar datos ,forma de comunicacion con el servidor y el navegador.
 aplicacion.use(require('./rutas/endpoints'));//aqui exportamos(requerimos) la constante "ruta" del archivo endpoints.js
