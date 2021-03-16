@@ -1,0 +1,1 @@
+# Ejemplo de una pagina de publicaciones
