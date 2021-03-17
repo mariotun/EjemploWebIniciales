@@ -1,20 +1,10 @@
 
-<h1>Bienvenido estudiante</h1>
-
-<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container">
-
-
-  
-  
-
 
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav ml-auto">
      
-      
-    
       <button class="btn btn-secondary" (click)="cerrar_sesion()" >Cerrar Sesion</button>
       
     </ul>
@@ -25,118 +15,101 @@
 </nav>
 
 
-
-
-
-
-<div class="container p-3">
-  <div class="card">
-      <h4 class="card-header"><strong>PERFIL</strong></h4>
-      <div class="card-body">
+<div class="container p-3" >
+  <div class="card" >
+      <h5 class="card-header">USUARIOS REGISTRADOS</h5>
+      <div class="card-body"  >
         
-        <form >
-          <div class="form-row" *ngFor="let usu of Usuarios">
-            <div class="form-group col-md-6">
-              <h6>{{usu.NOMBRE}}</h6>
-              <input value={{usu.NOMBRE}} type="text" [(ngModel)]="user.nombreu" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.APELLIDO}}</h6>
-              <input type="text" [(ngModel)]="user.apellidou" name="apellido" class="form-control" placeholder="Apellido" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.PAIS}}</h6>
-              <input type="text" [(ngModel)]="user.paisu" name="pais" class="form-control" placeholder="Pais" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.CORREO}}</h6>
-              <input type="text" [(ngModel)]="user.email" name="emial" class="form-control" placeholder="Email" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.CONTRASENA}}</h6>
-              <input type="text" [(ngModel)]="user.passwordu" name="password" class="form-control" placeholder="Password" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.CCONTRASENA}}</h6>
-              <input type="text" [(ngModel)]="user.confpasswordu" name="confpassword" class="form-control" placeholder="Conf. Password" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.FECHANACIMIENTO}}</h6>
-              <input type="text" [(ngModel)]="user.nacimientou" name="nacimiento" class="form-control" placeholder="Fecha Nacimiento" required autofocus>
-            </div>
-            <div class="form-group col-md-6">
-              <h6>{{usu.CREDITO}}</h6>
-              <input type="text" [(ngModel)]="user.credito" name="credito" class="form-control" placeholder="Credito" required autofocus>
-            </div>
 
+        <div class="container ">
 
-            <div class="form-group col-md-6 text-center">
-             
-              <button class="btn btn-primary text-align-center mr-3"  type="submit" (click)="colocar_datos(usu.IDCLIENTE,usu.NOMBRE,usu.APELLIDO,usu.CORREO,usu.CONTRASENA,usu.CCONTRASENA,usu.FECHA,usu.PAIS,usu.CREDITO,usu.FOTOGRAFIA,usu.TIPOUSUARIO)">Colocar Datos</button>  
-            </div> 
-             
-            <div class="form-group col-md-6 text-center">
-             <button class="btn btn-primary text-align-center"  type="submit" (click)="updateusuario()" >Actualizar Datos</button> 
+          <div class="container" style="  height: 400px; overflow-y: scroll;">
+          <table class="table"  >
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Correo</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                  
+                <tr *ngFor="let usuario of Usuarios">
+                  <td> {{usuario.IdUsuario}} </td>
+                  <td>{{usuario.Nombre}}</td>
+                  <td>{{usuario.Correo}}</td>
+                </tr>
+              
                 
-            </div> 
-
-
+              </tbody>
+            </table>
+          </div>
+          
+          
           </div>
 
+          
 
+      </div>
+  </div>
+  </div>
+
+
+
+<!-- ES LA SECCION DE LAS PUBLICACIONES -->
+
+  <div class="container p-3">
+    <div class="card" >
+      <h5 class="card-header">PUBLICACIONES</h5>
+      <div class="card-body " style="text-align:center;">
+
+        <form  (submit)="nuevapublicacion()">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <input type="text" [(ngModel)]="publicacion.descripcion" name="descripcion" class="form-control" placeholder="Descripcion" required autofocus>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary text-align-center">Realizar Publicacion</button>  
+            </div> 
+          </div> 
         </form>
 
-        
+        <div class="container p-3">
 
-      </div>
-  </div>
-  </div>
-
-  <div class="container p-3">
-    <div class="card" >
-      <h4 class="card-header"><strong>PUBLICAR PRODUCTO</strong></h4>
-      <div class="card-body " >
-
-        <app-producto></app-producto>  <!--Se va a mostrar las categorias
-
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="container p-3">
-    <div class="card" >
-      <h4 class="card-header"><strong>Chat entre usuarios</strong></h4>
-      <div class="card-body " >
-
-
-        <div  style="width: 30%; margin: auto; margin-top: 100px; ">
-
-     
-
-          <div >
-            <label for="">Escriba el mensaje</label>
-            <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userchat.text" required autofocus>
+          <div class="row">
+              <div class="row justify-content-center">
+      
+               
+      
+          <div class="card mx-3 my-4" style="width: 18rem;" *ngFor="let publi of Publicacion">
+      
+              
+      
+              <div class="card-body">
+                <h6 class="card-title"><strong>Fecha:</strong> {{publi.Fecha_Hora}}</h6>
+                <h6 class="card-title"><strong>Usuario:</strong> {{publi.Usuario_IdUsuario}}</h6>
+                <h6 class="card-title"><strong>Descripcion:</strong> {{publi.Descripcion}}</h6>
+              </div>
+      
+              <!--
+              <div class="card-footer">
+                
+                  <button type="submit" (click)="set_detalleproducto(prod.IDPRODUCTO,prod.NOMBRE,prod.DETALLE,prod.PALABRASCLAVE,prod.PRECIO)" class="btn btn-secondary mr-3">Detalle</button>
+                 <button type="submit" (click)="get_comentario_producto(prod.IDPRODUCTO)" class="btn btn-secondary">Ver Comentarios</button>
+      
+              </div> -->
+      
           </div>
-
-          <div class="mt-3" data-spy="scroll">
-            <div *ngFor="let a of myMessages">
-              <label for="" style="font-weight: bold;">{{a.user}}:</label>
-              <span> {{a.text}}</span>
-            </div>
-
+      
+           
+      
           </div>
-
-
-        </div>  
-
-
-
+      </div>
+      
+      </div>
 
 
       </div>
     </div>
   </div>
- 
--->
